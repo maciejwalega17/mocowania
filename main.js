@@ -1,8 +1,8 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['100001', '040', '070', '090'];
-const mc = 1;
+const data = ['5091882', '060', '080'];
+const mc = 3;
 
 const detal = data.slice(0, 1);
 const operations = data.slice(1);
@@ -49,6 +49,7 @@ const test = async () => {
 				)
 			)
 			.sendKeys(fixtureList[i]);
+		await driver.sleep(500);
 		await driver
 			.wait(
 				until.elementLocated(
@@ -71,6 +72,17 @@ const test = async () => {
 	await driver
 		.findElement(By.xpath('//fieldset[1]/mms-input-group[1]/div/input'))
 		.sendKeys(detal[0], Key.RETURN);
+
+	await driver
+		.wait(
+			until.elementLocated(
+				By.xpath(
+					'/html/body/div/div[4]/div/mat-dialog-container/dialog-add-new-operation/mat-dialog-content/form/fieldset[1]/mms-input-group/div/input'
+				)
+			),
+			2000
+		)
+		.sendKeys('400');
 	await driver
 		.wait(
 			until.elementLocated(
@@ -81,6 +93,7 @@ const test = async () => {
 			2000
 		)
 		.click();
+
 	// Dodaj operacje
 	for (let i = 0; i < operations.length; i++) {
 		await driver.sleep(1000);
@@ -120,12 +133,15 @@ const test = async () => {
 			.wait(
 				until.elementLocated(
 					By.xpath(
-						'/html/body/mms-app-root/datamanager-app/datamanager-part-master-data/manager-page-content/manager-page-detail/datamanager-part-details/div/div[2]/div/div[1]/mms-btn[2]'
+						`/html/body/mms-app-root/datamanager-app/datamanager-part-master-data/manager-page-content/manager-page-detail/datamanager-part-details/div/div[${
+							i + 2
+						}]/div/div[1]/mms-btn[2]`
 					)
 				),
 				2000
 			)
 			.click();
+
 		// Dodaj Fixture
 		await driver
 			.wait(
@@ -233,6 +249,7 @@ const test = async () => {
 		}
 
 		// Dodanie ostatniego MC poza petla
+		await driver.sleep(400);
 		await driver
 			.wait(until.elementLocated(By.xpath(`//li[${5}]/span`)), 2000)
 			.click();
@@ -337,6 +354,17 @@ const test = async () => {
 		await driver
 			.wait(until.elementLocated(By.xpath("//span[text()='Select']")), 2000)
 			.click();
+
+		await driver
+			.wait(
+				until.elementLocated(
+					By.xpath(
+						`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-actions/mms-btn[3]`
+					)
+				),
+				2000
+			)
+			.click();
 	}
 
 	//Usuwanie op10
@@ -345,7 +373,9 @@ const test = async () => {
 		.wait(
 			until.elementLocated(
 				By.xpath(
-					'//*[@id="page-content"]/manager-page-detail/datamanager-part-details/div/div[2]/div/div[1]/mms-btn[1]'
+					`//*[@id="page-content"]/manager-page-detail/datamanager-part-details/div/div[${
+						operations.length + 2
+					}]/div/div[1]/mms-btn[1]`
 				)
 			),
 			2000
