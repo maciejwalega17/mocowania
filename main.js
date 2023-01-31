@@ -1,7 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['100001', '040', '060'];
+const data = ['5054178', '040', '060'];
 const mc = 1;
 
 const detal = data.slice(0, 1);
@@ -39,7 +39,7 @@ const test = async () => {
 	};
 	const selectSearchFilter = async (q) => {
 		idKeys('selection-search-filter', q);
-		await driver.sleep(700);
+		await driver.sleep(1000);
 		idKeys('selection-search-filter', Key.RETURN);
 		// xpathClick(
 		// 	'/html/body/div/div[4]/div/mat-dialog-container/dialog-select-nc-program/mat-dialog-actions/mms-btn[1]'
@@ -62,15 +62,16 @@ const test = async () => {
 	idClick('m1_masterdata');
 	// Pętla dodawania fixtures
 	for (let i = 0; i < fixtureList.length; i++) {
+		await driver.sleep(700);
 		xpathClick(
 			'/html/body/mms-app-root/datamanager-app/datamanager-fixtures/manager-page-header/div[2]/a[1]'
 		);
-		await driver.sleep(500);
+		await driver.sleep(800);
 		xpathKeys(
 			'/html/body/div/div[2]/div/mat-dialog-container/dialog-edit-fixture/mat-dialog-content/form/fieldset[1]/mms-input-group/div/input',
 			fixtureList[i]
 		);
-		await driver.sleep(700);
+		await driver.sleep(900);
 		xpathKeys(
 			'/html/body/div/div[2]/div/mat-dialog-container/dialog-edit-fixture/mat-dialog-content/form/fieldset[2]/mms-input-group/div/input',
 			`Setup ${i + 1}`
@@ -136,7 +137,7 @@ const test = async () => {
 			'/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[1]/mms-input-group[2]/div/mms-btn'
 		);
 		selectSearchFilter(fixtureList[i]);
-		await driver.sleep(1000);
+		await driver.sleep(1500);
 		// Loading
 		xpathClick(
 			'/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[1]/datamanager-edit-loading-step/div/div[2]/input'
@@ -185,27 +186,27 @@ const test = async () => {
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${2}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[3]/mms-btn`
 		);
 		selectSearchFilter('zerowanie');
-		await driver.sleep(1000);
+		await driver.sleep(1500);
 		xpathClick(`//li[${4}]/span`);
 		xpathClick(
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${4}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[3]/mms-btn`
 		);
 		selectSearchFilter('zerowanie');
-		await driver.sleep(1000);
+		await driver.sleep(1500);
 		// DODWANIE PROGRAMU CZYSZCZENIA
 		xpathClick(`//li[${5}]/span`);
 		xpathClick(
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${5}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[3]/mms-btn`
 		);
 		selectSearchFilter('cleaning');
-		await driver.sleep(1000);
+		await driver.sleep(1500);
 		// DODWANIE PROGRAMU NC
 		xpathClick(`//li[${3}]/span`);
 		xpathClick(
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${3}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[3]/mms-btn`
 		);
-		await driver.sleep(1000);
 		selectSearchFilter(detal[0] + operations[i]);
+		await driver.sleep(1500);
 		// Zapisz kroki do operacji
 		xpathClick(
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-actions/mms-btn[3]`
@@ -213,6 +214,7 @@ const test = async () => {
 	}
 
 	// Usuwanie operacji dodanej jako pierwsza
+	await driver.sleep(1500);
 	xpathClick(
 		`//*[@id="page-content"]/manager-page-detail/datamanager-part-details/div/div[${
 			operations.length + 2
@@ -221,5 +223,7 @@ const test = async () => {
 	xpathClick(
 		'/html/body/mms-app-root/mms-alerts-overlay/div/div/mms-confirm/div[2]/mms-btn[1]'
 	);
+
+	await driver.quit();
 };
 test();
