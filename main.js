@@ -1,7 +1,7 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['5054178', '040', '060'];
+const data = ['5135462', '040', '060'];
 const mc = 1;
 
 const detal = data.slice(0, 1);
@@ -125,7 +125,7 @@ const test = async () => {
 		);
 		// Dodaj kroki do operacji i wypełnij je danymi
 		// Dodaj krok operacji
-		await driver.sleep(1000);
+		await driver.sleep(2000);
 		xpathClick(
 			`/html/body/mms-app-root/datamanager-app/datamanager-part-master-data/manager-page-content/manager-page-detail/datamanager-part-details/div/div[${
 				i + 2
@@ -161,11 +161,13 @@ const test = async () => {
 		for (let i = 0; i < 3; i++) {
 			await driver.sleep(1000);
 			xpathClick(`//li[${2 + i}]/span`);
+			await driver.sleep(400);
 			xpathClick(
 				`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${
 					2 + i
 				}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[1]/div[${mc}]/input`
 			);
+			await driver.sleep(400);
 			xpathClick(
 				'/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/nav/ul/div/mms-btn[2]'
 			);
@@ -173,8 +175,8 @@ const test = async () => {
 				'/html/body/div/div[4]/div/mat-dialog-container/dialog-select-step-type/mat-dialog-content/div/button[1]'
 			);
 		}
-		await driver.sleep(700);
 		// Dodanie ostatniego MC poza petla
+		await driver.sleep(1500);
 		xpathClick(`//li[${5}]/span`);
 		xpathClick(
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${5}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[1]/div[${mc}]/input`
@@ -182,6 +184,7 @@ const test = async () => {
 		// DODWANIE PRAGRAMÓW ZEROWANIA
 		// Wybierz krok, kliknij dodaj program, wyszukaj i dodaj program x2
 		xpathClick(`//li[${2}]/span`);
+		await driver.sleep(1000);
 		xpathClick(
 			`/html/body/div/div[2]/div/mat-dialog-container/dialog-process-plan-edit/mat-dialog-content/form[1]/div[2]/div/datamanager-edit-fms-process-plan/fieldset[2]/div[${2}]/datamanager-edit-machining-step/div/div[2]/div[2]/div[3]/mms-btn`
 		);
@@ -224,6 +227,7 @@ const test = async () => {
 		'/html/body/mms-app-root/mms-alerts-overlay/div/div/mms-confirm/div[2]/mms-btn[1]'
 	);
 
+	await driver.sleep(2000);
 	await driver.quit();
 };
 test();
