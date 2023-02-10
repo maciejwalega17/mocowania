@@ -1,8 +1,8 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['5135462', '040', '060'];
-const mc = 1;
+const data = ['300011762', '040'];
+const mc = 5;
 
 const detal = data.slice(0, 1);
 const operations = data.slice(1);
@@ -20,7 +20,7 @@ for (const op of operations) {
 	fixtureCreate(detal, op);
 }
 
-const test = async () => {
+const createMd = async () => {
 	// Stwórz driver
 	let driver = await new Builder().forBrowser('chrome').build();
 
@@ -41,9 +41,6 @@ const test = async () => {
 		idKeys('selection-search-filter', q);
 		await driver.sleep(1000);
 		idKeys('selection-search-filter', Key.RETURN);
-		// xpathClick(
-		// 	'/html/body/div/div[4]/div/mat-dialog-container/dialog-select-nc-program/mat-dialog-actions/mms-btn[1]'
-		// );
 	};
 
 	// Wejdz na strone mms i zaloguj
@@ -230,4 +227,4 @@ const test = async () => {
 	await driver.sleep(2000);
 	await driver.quit();
 };
-test();
+createMd();
