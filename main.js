@@ -45,15 +45,18 @@ const createMd = async () => {
 
 	// Wejdz na strone mms i zaloguj
 	await driver.get('http://mms251107s1/#/');
+	await driver.manage().window().maximize();
 	xpathClick(
 		'/html/body/mms-app-root/mms-language-selection/div[2]/div/div/a[3]'
 	);
 	xpathClick(
 		'/html/body/mms-app-root/mms-home/div[2]/mms-menu/div/div[1]/a[1]'
 	);
+	await driver.sleep(1000);
 	idKeys('username', 'Ur');
+	await driver.sleep(1000);
 	idKeys('password', 'password');
-	await driver.sleep(2000);
+	await driver.sleep(1000);
 	idKeys('password', Key.RETURN);
 	// Idź do fixtures master data
 	idClick('m1_masterdata');
