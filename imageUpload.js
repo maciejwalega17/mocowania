@@ -97,41 +97,10 @@ const test = async () => {
 	const filePath = 'C:/Users/walega_m/Desktop/5054075.png';
 
 	imgUpload(ust, opId, filePath);
-	// TUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
-	await driver.sleep(10000);
-	// Wejdz na strone mms i zaloguj
-	await driver.get('http://mms251107s1/#/');
-	xpathClick(
-		'/html/body/mms-app-root/mms-language-selection/div[2]/div/div/a[3]'
-	);
-	await driver
-		.wait(
-			until.elementLocated(
-				By.xpath(
-					'/html/body/mms-app-root/mms-home/div[2]/mms-menu/div/div[1]/a[1]'
-				)
-			)
-		)
-		.contextClick();
-
-	idKeys('username', 'Ur');
-	idKeys('password', 'password');
-	await driver.sleep(2000);
-	idKeys('password', Key.RETURN);
-
-	// Nawiguj do katalogu nc program lib
-	await driver.sleep(1000);
-	idClick('m1_ncprograms');
-	await driver.sleep(1000);
-	idClick('m2_nc-library');
-	await driver.sleep(1000);
-	xpathDoubleClick(
-		'/html/body/mms-app-root/datamanager-app/datamanager-nc-library/manager-page-content/manager-page-master/datamanager-nc-folder-content/mms-data-table/div/table/tbody/tr/td[1]/span'
-	);
-
+	
 	// Wyszukaj program
 
-	await driver.sleep(10000);
+	await driver.sleep(100000);
 	SearchFilter(detal);
 
 	// Pętla wejścia i edycji operacji

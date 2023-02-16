@@ -1,8 +1,8 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['300011762', '040'];
-const mc = 5;
+const data = ['5054404', '040', '060'];
+const mc = 1;
 
 const detal = data.slice(0, 1);
 const operations = data.slice(1);
@@ -52,7 +52,7 @@ const createMd = async () => {
 	xpathClick(
 		'/html/body/mms-app-root/mms-home/div[2]/mms-menu/div/div[1]/a[1]'
 	);
-	await driver.sleep(1000);
+	await driver.sleep(2000);
 	idKeys('username', 'Ur');
 	await driver.sleep(1000);
 	idKeys('password', 'password');
@@ -96,10 +96,12 @@ const createMd = async () => {
 		Key.RETURN
 	);
 	// Uzupełnij pierwszą operację (usuwana na koniec)
+	await driver.sleep(500);
 	xpathKeys(
 		'/html/body/div/div[4]/div/mat-dialog-container/dialog-add-new-operation/mat-dialog-content/form/fieldset[1]/mms-input-group/div/input',
 		'400'
 	);
+	await driver.sleep(500);
 	xpathClick(
 		'/html/body/div/div[4]/div/mat-dialog-container/dialog-add-new-operation/mat-dialog-actions/mms-btn[1]'
 	);

@@ -1,9 +1,9 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['5042057', '040', '060'];
-const mcInit = 3;
-const mcFinal = 5;
+const data = ['5026249', '040', '060'];
+const mcInit = 4;
+const mcFinal = 1;
 
 const detal = data.slice(0, 1);
 const operations = data.slice(1);
@@ -33,6 +33,7 @@ const switchMc = async () => {
 
 	// Wejdz na strone mms i zaloguj
 	await driver.get('http://mms251107s1/#/');
+	await driver.manage().window().maximize();
 	xpathClick(
 		'/html/body/mms-app-root/mms-language-selection/div[2]/div/div/a[3]'
 	);
