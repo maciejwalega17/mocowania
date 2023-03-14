@@ -1,9 +1,9 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['5026249', '040', '060'];
-const mcInit = 4;
-const mcFinal = 1;
+const data = ['5065391', '040'];
+const mcInit = 2;
+const mcFinal = 4;
 
 const detal = data.slice(0, 1);
 const operations = data.slice(1);
@@ -42,7 +42,7 @@ const switchMc = async () => {
 	);
 	idKeys('username', 'Ur');
 	idKeys('password', 'password');
-	await driver.sleep(2000);
+	await driver.sleep(3000);
 	idKeys('password', Key.RETURN);
 
 	// Nawiguj do katalogu part master data

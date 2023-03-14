@@ -1,8 +1,8 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 require('chromedriver');
 
-const data = ['5054404', '040', '060'];
-const mc = 1;
+const data = ['5065268', '040', '060'];
+const mc = 3;
 
 const detal = data.slice(0, 1);
 const operations = data.slice(1);
